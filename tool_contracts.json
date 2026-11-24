@@ -1,0 +1,61 @@
+{
+  "tools": [
+    {
+      "name": "get_instance_metadata",
+      "description": "Retrieve basic metadata and current state for the single approved EC2 instance. This tool cannot access other instances.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "description": "The approved EC2 instance ID."
+          }
+        },
+        "required": ["instance_id"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_cpu_metrics",
+      "description": "Retrieve average CPU utilization metrics for the approved EC2 instance over a bounded time window. Maximum window is one hour. Period is fixed at five minutes.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "description": "The approved EC2 instance ID."
+          },
+          "start_time": {
+            "type": "string",
+            "description": "Optional ISO 8601 timestamp with timezone."
+          },
+          "end_time": {
+            "type": "string",
+            "description": "Optional ISO 8601 timestamp with timezone."
+          }
+        },
+        "required": ["instance_id"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_approved_logs",
+      "description": "Retrieve a maximum of 50 log events from the fixed CloudFence approved log group. Defaults to the last 30 minutes. Maximum time window is one hour.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "start_time": {
+            "type": "string",
+            "description": "Optional ISO 8601 timestamp with timezone."
+          },
+          "end_time": {
+            "type": "string",
+            "description": "Optional ISO 8601 timestamp with timezone."
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    }
+  ]
+}
